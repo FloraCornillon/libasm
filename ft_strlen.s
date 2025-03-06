@@ -5,9 +5,9 @@ section .text
 ft_strlen:
     test rdi, rdi ; similaire a AND mais ne modifie pas les operande (test si ptr = null)
     je .null_case
-    xor rcx, rcx ; toujours faire ça pour mettre un registre a 0
+    xor rcx, rcx  ; toujours faire ça pour mettre un registre a 0
 
-.loop: ; label local
+.loop:
     cmp byte [rdi + rcx], 0
     je .end
     inc rcx
