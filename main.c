@@ -18,6 +18,8 @@ int main() {
     printf("compare \"salut\" et \"salut\" : %d\n", ft_strcmp("salut", "salut"));
     printf("compare \"abcd\" et \"abc\" : %d\n", ft_strcmp("abcd", "abc"));
     printf("compare \"salut\" et \"\" : %d\n", ft_strcmp("salut", ""));
+    printf("compare \"ab\" et \"abcde\" : %d\n", ft_strcmp("ab", "abcde"));
+    printf("compare \"\" et \"\" : %d\n", ft_strcmp("", ""));
 
 
     return 0;
