@@ -1,11 +1,16 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <errno.h>
+
+
+#define BUFFER_SIZE 100
 
 size_t ft_strlen(const char *);
 char *ft_strcpy(char *, char *);
 int ft_strcmp(const char *, const char *);
 ssize_t ft_write(int, const void *, size_t);
+ssize_t ft_read(int, void *, size_t);
 
 int main() {
 
@@ -31,6 +36,21 @@ int main() {
     ret = ft_write(-1, "Salut\n", 6);
     printf("retour fd 1: %zd\nErrno: %d\n", ret, errno);
 
+    //ft_read
+    char buff[BUFFER_SIZE + 1];
+    int fd = open("text.txt", O_RDONLY);
+    if (fd < 0) {
+        perror("open");
+        return (1);
+    }
+    ssize_t bytes_read;
+    while ((bytes_read = ft_read(fd, buff, BUFFER_SIZE)) > 0) {
+        buff[bytes_read] = '\0';
+        printf("%s", buff);
+    }
+    if (bytes_read < 0)
+        perror("ft_read");
+    close(fd);
 
 
     return 0;
