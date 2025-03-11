@@ -12,22 +12,25 @@ ft_strcmp:
     xor rax, rax
 
 .loop:
-    movzx rax, byte [rdi]     ; move with zero extension
+    movzx rcx, byte [rdi]     ; move with zero extension
     movzx rdx, byte [rsi]
-    cmp rax, rdx
+    cmp rcx, rdx
     jne .diff
-    test rax, rax
+    test rcx, rcx
     jz .done
     inc rdi
     inc rsi
     jmp .loop
   
 .diff:
-    sub rax, rdx
+    sub rcx, rdx
+    mov rax, rcx
+    ret
 
 .done:
+    xor rax, rax
     ret
 
 .null_case:
-    mov rax, -1
+    xor rax, rax
     ret
